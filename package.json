@@ -1,0 +1,19 @@
+{
+  "name": "budgetbuddy",
+  "version": "1.0.0",
+  "description": "Budget bot for telegram",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "telegraf": "^4.15.3"
+  },
+  "devDependencies": {
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.3"
+  }
+}
