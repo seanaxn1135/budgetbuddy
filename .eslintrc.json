@@ -4,7 +4,7 @@
     "node": true
   },
   "extends": ["standard-with-typescript", "plugin:prettier/recommended"],
-  "plugins": "prettier",
+  "plugins": ["prettier"],
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
