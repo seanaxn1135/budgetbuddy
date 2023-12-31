@@ -3,17 +3,14 @@ import { Telegraf } from 'telegraf'
 
 dotenv.config()
 
-if (
-  process.env.BOT_TOKEN === undefined ||
-  process.env.BOT_TOKEN.trim() === ''
-) {
+if (process.env.BOT_TOKEN === undefined || process.env.BOT_TOKEN === '') {
   throw new Error('BOT_TOKEN not found in environment variables.')
 }
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
-bot.start(async (ctx): Promise<void> => {
-  await ctx.reply('Hello World')
+bot.start(async (ctx) => {
+  void ctx.reply('Hello World')
 })
 
 async function startBot(): Promise<void> {
