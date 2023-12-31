@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 jobs:
   Deploy-Prod:
-    environment: Production
+    environment: development
     timeout-minutes: 8
     runs-on: ubuntu-latest
 
