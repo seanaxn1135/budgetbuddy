@@ -3,7 +3,7 @@ name: Deploy
 on:
   workflow_dispatch:
 jobs:
-  Deploy-Prod:
+  Deploy-dev:
     environment: development
     timeout-minutes: 8
     runs-on: ubuntu-latest
