@@ -2,8 +2,10 @@ import dotenv from 'dotenv'
 import start from './commands/start'
 import test from './commands/test'
 import { Scenes, Telegraf, session } from 'telegraf'
+import { message } from 'telegraf/filters'
 import type { BotContext } from './global'
 import { scenes } from './stages'
+import textHandler from './commands/text-handler'
 
 dotenv.config()
 
@@ -19,6 +21,7 @@ async function startBot(): Promise<void> {
   bot.use(stage.middleware())
   bot.start(start)
   bot.command('test', test)
+  bot.on(message('text'), textHandler)
   await bot.launch()
 }
 
