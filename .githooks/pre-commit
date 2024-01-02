@@ -1,0 +1,6 @@
+#!/bin/bash
+npm run lint || { echo 'linting failed.' ; exit 1;}
+npm run test || { echo 'tests failed.' ; exit 1; }
+
+# If tests passed, allow the commit
+exit 0
