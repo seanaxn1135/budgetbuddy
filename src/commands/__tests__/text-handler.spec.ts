@@ -13,7 +13,7 @@ describe('Text Handler', () => {
       reply: jest.fn(),
     }) as unknown as BotContext
   it('should reply "I do not understand" if text is not valid', async () => {
-    ctx = createCtxWithMessage('Some Text')
+    ctx = createCtxWithMessage('SomeText')
     await textHandler(ctx)
     expect(ctx.reply).toHaveBeenCalledWith('I do not understand')
   })
