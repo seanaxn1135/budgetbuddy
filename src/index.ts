@@ -1,5 +1,9 @@
 import dotenv from 'dotenv'
-import { Telegraf } from 'telegraf'
+import start from './commands/start'
+import test from './commands/test'
+import { Scenes, Telegraf, session } from 'telegraf'
+import type { BotContext } from './global'
+import { scenes } from './stages'
 
 dotenv.config()
 
@@ -7,19 +11,15 @@ if (process.env.BOT_TOKEN === undefined || process.env.BOT_TOKEN === '') {
   throw new Error('BOT_TOKEN not found in environment variables.')
 }
 
-const bot = new Telegraf(process.env.BOT_TOKEN)
-
-bot.start(async (ctx) => {
-  void ctx.reply('Hello World')
-})
+const bot = new Telegraf<BotContext>(process.env.BOT_TOKEN)
 
 async function startBot(): Promise<void> {
-  try {
-    await bot.launch()
-    console.log('Bot started successfully')
-  } catch (error) {
-    console.error('Failed to start the bot', error)
-  }
+  bot.use(session())
+  const stage = new Scenes.Stage(scenes)
+  bot.use(stage.middleware())
+  bot.start(start)
+  bot.command('test', test)
+  await bot.launch()
 }
 
 void startBot()
