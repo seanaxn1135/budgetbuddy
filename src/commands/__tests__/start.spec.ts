@@ -6,7 +6,6 @@ describe('start command', () => {
     const ctx = { reply: jest.fn() } as unknown as BotContext
 
     await start(ctx)
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(ctx.reply).toHaveBeenCalledWith(
       'Hello! Welcome to the Budget Bot. How can I assist you today?'
     )

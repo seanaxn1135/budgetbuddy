@@ -12,19 +12,34 @@ describe('Text Handler', () => {
         enter: jest.fn(),
       },
       reply: jest.fn(),
+      session: {
+        transaction: {
+          amount: 0,
+          description: '',
+          category: undefined,
+        },
+      },
     }) as unknown as BotContext
 
   it('should identify income', async () => {
     ctx = createCtxWithMessage('+1000 Salary')
     await textHandler(ctx)
-    expect(ctx.reply).toHaveBeenCalledWith('This is income')
+    expect(ctx.session.transaction).toEqual({
+      amount: 1000,
+      description: 'Salary',
+      category: undefined,
+    })
     expect(ctx.scene.enter).toHaveBeenCalledWith('CATEGORIZE_INCOME')
   })
 
   it('should identify expense', async () => {
     ctx = createCtxWithMessage('2000 Rent')
     await textHandler(ctx)
-    expect(ctx.reply).toHaveBeenCalledWith('This is expense')
+    expect(ctx.session.transaction).toEqual({
+      amount: 2000,
+      description: 'Rent',
+      category: undefined,
+    })
     expect(ctx.scene.enter).toHaveBeenCalledWith('CATEGORIZE_EXPENSE')
   })
 
