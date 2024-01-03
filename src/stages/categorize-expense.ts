@@ -22,5 +22,5 @@ categorizeExpenseScene.action(/^category_(.+)/, async (ctx) => {
 })
 
 categorizeExpenseScene.use(
-  async (ctx) => await ctx.replyWithMarkdownV2('Please choose a category')
+  async (ctx) => await ctx.reply('Please choose a category')
 )

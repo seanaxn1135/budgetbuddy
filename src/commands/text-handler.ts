@@ -15,8 +15,10 @@ const textHandler = async (ctx: BotContext): Promise<void> => {
 
   if (isIncome(text)) {
     await ctx.reply('This is income')
+    await ctx.scene.enter('CATEGORIZE_INCOME')
   } else if (isExpense(text)) {
     await ctx.reply('This is expense')
+    await ctx.scene.enter('CATEGORIZE_EXPENSE')
   } else {
     await ctx.reply('I do not understand')
   }
