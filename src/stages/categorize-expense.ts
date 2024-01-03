@@ -1,26 +1,29 @@
 import { Scenes, Markup } from 'telegraf'
 import type { BotContext } from '../global'
+import {
+  CATEGORY_EXPENSE_CONFIRMATION,
+  CATEGORY_SELECT_PROMPT,
+  CATEGORY_SELECT_REMINDER,
+} from '../constants/messages'
+import { EXPENSE_CATEGORIES } from '../constants/categories'
 
 export const categorizeExpenseScene = new Scenes.BaseScene<BotContext>(
   'CATEGORIZE_EXPENSE'
 )
 
 categorizeExpenseScene.enter(async (ctx) => {
-  await ctx.reply(
-    'Please select a category:',
-    Markup.inlineKeyboard([
-      [Markup.button.callback('Food', 'category_food')],
-      [Markup.button.callback('Transport', 'category_transport')],
-    ])
-  )
+  const keyboard = EXPENSE_CATEGORIES.map((category) => [
+    Markup.button.callback(category.label, category.callbackData),
+  ])
+  await ctx.reply(CATEGORY_SELECT_PROMPT, Markup.inlineKeyboard(keyboard))
 })
 
 categorizeExpenseScene.action(/^category_(.+)/, async (ctx) => {
   const category = ctx.match[1]
-  await ctx.reply(`Category ${category} selected. Expense saved.`)
+  await ctx.editMessageText(CATEGORY_EXPENSE_CONFIRMATION(category))
   await ctx.scene.leave()
 })
 
 categorizeExpenseScene.use(
-  async (ctx) => await ctx.reply('Please choose a category')
+  async (ctx) => await ctx.reply(CATEGORY_SELECT_REMINDER)
 )

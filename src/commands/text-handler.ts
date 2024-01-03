@@ -1,6 +1,11 @@
 import { deunionize } from 'telegraf'
 import type { BotContext } from '../global'
 import { isValidAmount } from '../helpers/is-valid-amount'
+import {
+  EXPENSE_MESSAGE,
+  INCOME_MESSAGE,
+  INVALID_FORMAT_MESSAGE,
+} from '../constants/messages'
 
 const textHandler = async (ctx: BotContext): Promise<void> => {
   const message = deunionize(ctx.message)
@@ -14,13 +19,13 @@ const textHandler = async (ctx: BotContext): Promise<void> => {
   }
 
   if (isIncome(text)) {
-    await ctx.reply('This is income')
+    await ctx.reply(INCOME_MESSAGE)
     await ctx.scene.enter('CATEGORIZE_INCOME')
   } else if (isExpense(text)) {
-    await ctx.reply('This is expense')
+    await ctx.reply(EXPENSE_MESSAGE)
     await ctx.scene.enter('CATEGORIZE_EXPENSE')
   } else {
-    await ctx.reply('I do not understand')
+    await ctx.reply(INVALID_FORMAT_MESSAGE)
   }
 }
 
