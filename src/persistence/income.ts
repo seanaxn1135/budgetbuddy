@@ -2,7 +2,7 @@ import type { TablesInsert } from '../database.types'
 import supabase from './initialize'
 
 const insertIncome = async (
-  userr_id: number,
+  user_id: number,
   description: string,
   amount: number,
   category: string,
@@ -11,7 +11,7 @@ const insertIncome = async (
   const { data, error } = await supabase
     .from('income')
     .insert([
-      { userr_id, description, amount, category, date: new Date(date * 1000) },
+      { user_id, description, amount, category, date: new Date(date * 1000) },
     ])
 
   if (error !== null) {
