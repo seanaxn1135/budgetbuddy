@@ -11,6 +11,12 @@
       "rules": {
         "@typescript-eslint/unbound-method": "off"
       }
+    },
+    {
+      "files": ["src/persistence/*.ts"],
+      "rules": {
+        "@typescript-eslint/naming-convention": "off"
+      }
     }
   ],
   "parserOptions": {

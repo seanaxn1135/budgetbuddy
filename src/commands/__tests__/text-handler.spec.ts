@@ -5,6 +5,9 @@ describe('Text Handler', () => {
   let ctx: BotContext
   const createCtxWithMessage = (text: string): BotContext =>
     ({
+      from: {
+        id: 1,
+      },
       message: {
         text,
       },

@@ -4,8 +4,13 @@ import { isValidAmount } from '../helpers/is-valid-amount'
 import { INVALID_FORMAT_MESSAGE } from '../constants/messages'
 
 const textHandler = async (ctx: BotContext): Promise<void> => {
+  ctx.session = {}
   const message = deunionize(ctx.message)
   if (message === null || message === undefined) {
+    return
+  }
+
+  if (ctx.from === undefined) {
     return
   }
 
@@ -22,6 +27,7 @@ const textHandler = async (ctx: BotContext): Promise<void> => {
     const transactionDetails = parseTransactionDetails(text)
     ctx.session.transaction = { ...transactionDetails }
     await ctx.scene.enter('CATEGORIZE_EXPENSE')
+    console.log(ctx.session)
   } else {
     await ctx.reply(INVALID_FORMAT_MESSAGE)
   }
