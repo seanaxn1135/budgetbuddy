@@ -19,8 +19,13 @@ categorizeExpenseScene.enter(async (ctx) => {
 })
 
 categorizeExpenseScene.action(/^category_(.+)/, async (ctx) => {
+  if (ctx.session.transaction == null) {
+    await ctx.reply('Something went wrong')
+    return
+  }
   const category = ctx.match[1]
   await ctx.editMessageText(CATEGORY_EXPENSE_CONFIRMATION(category))
+  ctx.session.transaction.category = category
   await ctx.scene.leave()
 })
 

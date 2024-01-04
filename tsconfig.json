@@ -11,5 +11,5 @@
     "rootDir": "src",
     "outDir": "dist"
   },
-  "include": ["src/**/*.ts", "global.d.ts"]
+  "include": ["src/**/*.ts", "global.d.ts, database.types.ts"]
 }
