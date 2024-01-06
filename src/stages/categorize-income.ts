@@ -41,7 +41,7 @@ categorizeIncomeScene.action(/^category_(.+)/, async (ctx) => {
     ctx.session.transaction.description,
     ctx.session.transaction.amount,
     ctx.session.transaction.category,
-    date
+    new Date(date * 1000)
   )
 })
 

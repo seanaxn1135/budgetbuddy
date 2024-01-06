@@ -6,13 +6,11 @@ const insertExpense = async (
   description: string,
   amount: number,
   category: string,
-  date: number
+  date: Date
 ): Promise<TablesInsert<'expense'> | null> => {
   const { data, error } = await supabase
     .from('expense')
-    .insert([
-      { user_id, description, amount, category, date: new Date(date * 1000) },
-    ])
+    .insert([{ user_id, description, amount, category, date }])
 
   if (error !== null) {
     console.error('Error inserting data:', error)

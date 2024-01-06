@@ -27,7 +27,6 @@ const textHandler = async (ctx: BotContext): Promise<void> => {
     const transactionDetails = parseTransactionDetails(text)
     ctx.session.transaction = { ...transactionDetails }
     await ctx.scene.enter('CATEGORIZE_EXPENSE')
-    console.log(ctx.session)
   } else {
     await ctx.reply(INVALID_FORMAT_MESSAGE)
   }
