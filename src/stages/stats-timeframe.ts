@@ -1,7 +1,10 @@
 import { Markup, Scenes } from 'telegraf'
 import type { BotContext } from '../global'
 import { STATS_TIMEFRAME } from '../constants/stats-timeframe'
-import { STATS_TIMEFRAME_PROMPT } from '../constants/messages'
+import {
+  STATS_TIMEFRAME_PROMPT,
+  TIMEFRAME_SELECT_REMINDER,
+} from '../constants/messages'
 
 export const statsTimeframeScene = new Scenes.BaseScene<BotContext>(
   'STATS_TIMEFRAME'
@@ -33,3 +36,7 @@ statsTimeframeScene.action('timeframe_last_year', async (ctx) => {
   await ctx.editMessageText('last_year')
   await ctx.scene.leave()
 })
+
+statsTimeframeScene.use(
+  async (ctx) => await ctx.reply(TIMEFRAME_SELECT_REMINDER)
+)

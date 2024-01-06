@@ -7,7 +7,7 @@ export const getExpenses: any = async (
 ) => {
   const { data, error } = await supabase
     .from('expense')
-    .select('user_id, description, amount, category, date')
+    .select('amount, description, category, date')
     .eq('user_id', user_id)
     .gte('date', fromDate.toISOString())
     .lte('date', toDate.toISOString())

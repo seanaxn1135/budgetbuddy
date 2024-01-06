@@ -12,3 +12,4 @@ export const CATEGORY_INCOME_CONFIRMATION = (category: string): string =>
 
 // STATS
 export const STATS_TIMEFRAME_PROMPT = 'Please select a timeframe:'
+export const TIMEFRAME_SELECT_REMINDER = 'Please choose a timeframe'
