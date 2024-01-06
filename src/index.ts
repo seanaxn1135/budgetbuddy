@@ -5,6 +5,7 @@ import { message } from 'telegraf/filters'
 import type { BotContext } from './global'
 import { scenes } from './stages'
 import textHandler from './commands/text-handler'
+import stats from './commands/stats'
 
 dotenv.config()
 
@@ -19,6 +20,7 @@ async function startBot(): Promise<void> {
   const stage = new Scenes.Stage<BotContext>(scenes)
   bot.use(stage.middleware())
   bot.start(start)
+  bot.command('stats', stats)
   bot.on(message('text'), textHandler)
   await bot.launch()
 }
