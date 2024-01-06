@@ -5,6 +5,11 @@ import {
   STATS_TIMEFRAME_PROMPT,
   TIMEFRAME_SELECT_REMINDER,
 } from '../constants/messages'
+import { getLocalMTDInUTC } from '../helpers/timezone'
+import { getExpenses, getIncome } from '../persistence/stats'
+import { formatStats } from '../helpers/format-text'
+import moment from 'moment'
+import type { Transaction } from '../entities/transaction'
 
 export const statsTimeframeScene = new Scenes.BaseScene<BotContext>(
   'STATS_TIMEFRAME'
@@ -18,7 +23,19 @@ statsTimeframeScene.enter(async (ctx) => {
 })
 
 statsTimeframeScene.action('timeframe_mtd', async (ctx) => {
-  await ctx.editMessageText('mtd')
+  if (ctx.from === undefined) {
+    await ctx.reply('An error occurred. Please try again.')
+    console.error('Error: Required properties are undefined.')
+    return
+  }
+  const fromDate = getLocalMTDInUTC(8)
+  const toDate = moment.utc()
+  const [income, expenses] = await Promise.all([
+    getIncome(ctx.from.id, fromDate, toDate) as Transaction[],
+    getExpenses(ctx.from.id, fromDate, toDate) as Transaction[],
+  ])
+  await ctx.replyWithMarkdownV2(formatStats(expenses, income))
+
   await ctx.scene.leave()
 })
 
