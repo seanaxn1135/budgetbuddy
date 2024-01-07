@@ -5,6 +5,7 @@ import {
   CATEGORY_SELECT_PROMPT,
   CATEGORY_SELECT_REMINDER,
   GENERAL_ERROR_MESSAGE,
+  MISSING_PROPERTIES_ERROR_MESSAGE,
 } from '../constants/messages'
 import { INCOME_CATEGORIES } from '../constants/categories'
 import insertIncome from '../persistence/income'
