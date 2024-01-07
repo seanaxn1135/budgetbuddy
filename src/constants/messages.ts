@@ -15,8 +15,10 @@ export const STATS_TIMEFRAME_PROMPT = 'Please select a timeframe:'
 export const TIMEFRAME_SELECT_REMINDER = 'Please choose a timeframe'
 
 //  TIMEZONE
-export const CURRENT_TIMEZONE = (tzOffset: number): string =>
-  `Your current timezone is UTC${tzOffset}`
+export const CURRENT_TIMEZONE = (tzOffset: number): string => {
+  const sign = tzOffset >= 0 ? '+' : ''
+  return `Your current timezone is UTC${sign}${tzOffset}`
+}
 export const TIMEZONE_ACTION_SELECT_REMINDER = 'Please choose an action'
 export const SET_TIMEZONE_PROMPT =
   'Please enter your timezone as a UTC offset (e.g., +5.5, -2):'
