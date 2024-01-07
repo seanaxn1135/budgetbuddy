@@ -1,3 +1,4 @@
+import { INSERT_DATA_ERROR } from '../constants/messages'
 import type { TablesInsert } from '../database.types'
 import supabase from './initialize'
 
@@ -13,7 +14,7 @@ const insertIncome = async (
     .insert([{ user_id, description, amount, category, date }])
 
   if (error !== null) {
-    console.error('Error inserting data:', error)
+    console.error(INSERT_DATA_ERROR, error)
     return null
   }
 

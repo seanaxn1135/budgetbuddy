@@ -13,3 +13,26 @@ export const CATEGORY_INCOME_CONFIRMATION = (category: string): string =>
 // STATS
 export const STATS_TIMEFRAME_PROMPT = 'Please select a timeframe:'
 export const TIMEFRAME_SELECT_REMINDER = 'Please choose a timeframe'
+
+//  TIMEZONE
+export const CURRENT_TIMEZONE = (tzOffset: number): string =>
+  `Your current timezone is UTC${tzOffset}`
+export const TIMEZONE_ACTION_SELECT_REMINDER = 'Please choose an action'
+export const SET_TIMEZONE_PROMPT =
+  'Please enter your timezone as a UTC offset (e.g., +5.5, -2):'
+export const SET_TIMEZONE_INVALID_INPUT =
+  'Invalid input. Please enter a valid UTC offset (e.g., +3, -4, +5.5)'
+
+// GENERAL
+export const CANCEL_ACTION_MESSAGE = 'Operation cancelled.'
+
+//  ERROR
+export const GENERAL_ERROR_MESSAGE = 'An error occurred. Please try again.'
+export const MISSING_PROPERTIES_ERROR_MESSAGE =
+  'Error: Required properties are undefined.'
+export const INSERT_DATA_ERROR = 'Error inserting data:'
+export const FETCH_DATA_ERROR = 'Error fetching data:'
+
+//  START
+export const START_MESSAGE =
+  'Hello! Welcome to the Budget Bot. How can I assist you today?'

@@ -1,3 +1,4 @@
+import { FETCH_DATA_ERROR } from '../constants/messages'
 import supabase from './initialize'
 
 export const getExpenses: any = async (
@@ -12,7 +13,7 @@ export const getExpenses: any = async (
     .gte('date', fromDate.toISOString())
     .lte('date', toDate.toISOString())
   if (error !== null) {
-    console.error('Error fetching data:', error)
+    console.error(FETCH_DATA_ERROR, error)
     return null
   }
   return data
@@ -30,7 +31,7 @@ export const getIncome: any = async (
     .gte('date', fromDate.toISOString())
     .lte('date', toDate.toISOString())
   if (error !== null) {
-    console.error('Error fetching data:', error)
+    console.error(FETCH_DATA_ERROR, error)
     return null
   }
   return data

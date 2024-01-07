@@ -4,6 +4,7 @@ import {
   CATEGORY_INCOME_CONFIRMATION,
   CATEGORY_SELECT_PROMPT,
   CATEGORY_SELECT_REMINDER,
+  GENERAL_ERROR_MESSAGE,
 } from '../constants/messages'
 import { INCOME_CATEGORIES } from '../constants/categories'
 import insertIncome from '../persistence/income'
@@ -26,8 +27,8 @@ categorizeIncomeScene.action(/^category_(.+)/, async (ctx) => {
     ctx.session.transaction === undefined ||
     date === undefined
   ) {
-    await ctx.reply('An error occurred. Please try again.')
-    console.error('Error: Required properties are undefined.')
+    await ctx.reply(GENERAL_ERROR_MESSAGE)
+    console.error(MISSING_PROPERTIES_ERROR_MESSAGE)
     return
   }
 

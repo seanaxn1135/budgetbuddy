@@ -2,6 +2,8 @@ import { Markup, Scenes } from 'telegraf'
 import type { BotContext } from '../global'
 import { STATS_TIMEFRAME } from '../constants/stats-timeframe'
 import {
+  GENERAL_ERROR_MESSAGE,
+  MISSING_PROPERTIES_ERROR_MESSAGE,
   STATS_TIMEFRAME_PROMPT,
   TIMEFRAME_SELECT_REMINDER,
 } from '../constants/messages'
@@ -10,6 +12,7 @@ import { getExpenses, getIncome } from '../persistence/stats'
 import { formatStats } from '../helpers/format-text'
 import moment from 'moment'
 import type { Transaction } from '../entities/transaction'
+import { getTzOffset } from '../persistence/user-config'
 
 export const statsTimeframeScene = new Scenes.BaseScene<BotContext>(
   'STATS_TIMEFRAME'
@@ -24,11 +27,19 @@ statsTimeframeScene.enter(async (ctx) => {
 
 statsTimeframeScene.action('timeframe_mtd', async (ctx) => {
   if (ctx.from === undefined) {
-    await ctx.reply('An error occurred. Please try again.')
-    console.error('Error: Required properties are undefined.')
+    await ctx.reply(GENERAL_ERROR_MESSAGE)
+    console.error(MISSING_PROPERTIES_ERROR_MESSAGE)
     return
   }
-  const fromDate = getLocalMTDInUTC(8)
+  const tzOffset = await getTzOffset(ctx.from.id)
+
+  if (tzOffset === null) {
+    await ctx.reply(GENERAL_ERROR_MESSAGE)
+    console.error('Error: Timezone offset not found')
+    return
+  }
+
+  const fromDate = getLocalMTDInUTC(tzOffset)
   const toDate = moment.utc()
   const [income, expenses] = await Promise.all([
     getIncome(ctx.from.id, fromDate, toDate) as Transaction[],
