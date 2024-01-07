@@ -1,6 +1,6 @@
 import moment, { type Moment } from 'moment'
 
-export const getLocalMTDInUTC = (offset: number): Moment => {
+export const getStartOfThisMonthInUTC = (offset: number): Moment => {
   const currentUTC = moment.utc()
   const localDate = currentUTC.clone().utcOffset(offset * 60)
   const firstDayOfMonth = localDate.clone().date(1).startOf('day')
@@ -8,7 +8,7 @@ export const getLocalMTDInUTC = (offset: number): Moment => {
   return firstDayOfMonthUTC
 }
 
-export const getLocalYTDInUTC = (offset: number): Moment => {
+export const getStartOfThisYearInUTC = (offset: number): Moment => {
   const currentUTC = moment.utc()
   const localDate = currentUTC.clone().utcOffset(offset * 60)
   const firstDayOfYear = localDate.clone().startOf('year')

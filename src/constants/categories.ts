@@ -15,3 +15,20 @@ export const EXPENSE_CATEGORIES = [
   { label: '💊 Healthcare', callbackData: 'category_healthcare' },
   { label: '🔍 Others', callbackData: 'category_others' },
 ]
+
+export const EXPENSE_CATEGORIES_EMOJI = {
+  food: '🍔',
+  transportation: '🚖',
+  entertainment: '🕹️',
+  groceries: '🥬',
+  housing: '🏠',
+  clothing: '👕',
+  healthcare: '💊',
+  others: '🔍',
+}
+export const INCOME_CATEGORIES_EMOJI = {
+  salary: '💰',
+  advance: '🔜',
+  bonus: '🎉',
+  others: '🔍',
+}

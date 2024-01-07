@@ -7,7 +7,10 @@ import {
   STATS_TIMEFRAME_PROMPT,
   TIMEFRAME_SELECT_REMINDER,
 } from '../constants/messages'
-import { getLocalMTDInUTC } from '../helpers/timezone'
+import {
+  getStartOfThisMonthInUTC,
+  getStartOfThisYearInUTC,
+} from '../helpers/timezone'
 import { getExpenses, getIncome } from '../persistence/stats'
 import { formatStats } from '../helpers/format-text'
 import moment from 'moment'
@@ -22,10 +25,38 @@ statsTimeframeScene.enter(async (ctx) => {
   const keyboard = STATS_TIMEFRAME.map((timeframe) => [
     Markup.button.callback(timeframe.label, timeframe.callbackData),
   ])
-  await ctx.reply(STATS_TIMEFRAME_PROMPT, Markup.inlineKeyboard(keyboard))
+  await ctx.replyWithMarkdownV2(
+    STATS_TIMEFRAME_PROMPT,
+    Markup.inlineKeyboard(keyboard)
+  )
 })
 
 statsTimeframeScene.action('timeframe_mtd', async (ctx) => {
+  await generateStats(ctx, 'MTD')
+})
+
+statsTimeframeScene.action('timeframe_last_month', async (ctx) => {
+  await ctx.editMessageText('last_month')
+  await ctx.scene.leave()
+})
+
+statsTimeframeScene.action('timeframe_ytd', async (ctx) => {
+  await generateStats(ctx, 'YTD')
+})
+
+statsTimeframeScene.action('timeframe_last_year', async (ctx) => {
+  await ctx.editMessageText('last_year')
+  await ctx.scene.leave()
+})
+
+statsTimeframeScene.use(
+  async (ctx) => await ctx.reply(TIMEFRAME_SELECT_REMINDER)
+)
+
+async function generateStats(
+  ctx: BotContext,
+  timeframe: 'YTD' | 'MTD' | 'LAST_MONTH' | 'LAST_YEAR'
+): Promise<void> {
   if (ctx.from === undefined) {
     await ctx.reply(GENERAL_ERROR_MESSAGE)
     console.error(MISSING_PROPERTIES_ERROR_MESSAGE)
@@ -39,32 +70,32 @@ statsTimeframeScene.action('timeframe_mtd', async (ctx) => {
     return
   }
 
-  const fromDate = getLocalMTDInUTC(tzOffset)
-  const toDate = moment.utc()
+  let fromDate
+  let toDate
+  switch (timeframe) {
+    case 'YTD':
+      fromDate = getStartOfThisYearInUTC(tzOffset)
+      toDate = moment.utc()
+      break
+    case 'MTD':
+      fromDate = getStartOfThisMonthInUTC(tzOffset)
+      toDate = moment.utc()
+      break
+    case 'LAST_MONTH':
+      // TODO: implement
+      break
+    case 'LAST_YEAR':
+      // TODO: implement
+      break
+    default:
+      throw new Error(`Unsupported timeframe: ${timeframe as string}`)
+  }
   const [income, expenses] = await Promise.all([
     getIncome(ctx.from.id, fromDate, toDate) as Transaction[],
     getExpenses(ctx.from.id, fromDate, toDate) as Transaction[],
   ])
-  await ctx.replyWithMarkdownV2(formatStats(expenses, income))
-
+  await ctx.editMessageText(formatStats(expenses, income), {
+    parse_mode: 'MarkdownV2',
+  })
   await ctx.scene.leave()
-})
-
-statsTimeframeScene.action('timeframe_last_month', async (ctx) => {
-  await ctx.editMessageText('last_month')
-  await ctx.scene.leave()
-})
-
-statsTimeframeScene.action('timeframe_ytd', async (ctx) => {
-  await ctx.editMessageText('ytd')
-  await ctx.scene.leave()
-})
-
-statsTimeframeScene.action('timeframe_last_year', async (ctx) => {
-  await ctx.editMessageText('last_year')
-  await ctx.scene.leave()
-})
-
-statsTimeframeScene.use(
-  async (ctx) => await ctx.reply(TIMEFRAME_SELECT_REMINDER)
-)
+}

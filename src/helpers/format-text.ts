@@ -1,19 +1,9 @@
-import { EXPENSE_CATEGORIES, INCOME_CATEGORIES } from '../constants/categories'
+import {
+  EXPENSE_CATEGORIES_EMOJI,
+  INCOME_CATEGORIES_EMOJI,
+} from '../constants/categories'
 import type { Transaction } from '../entities/transaction'
 import { calculateByCategory } from './calculate-by-category'
-
-const expenseCategoryMap = Object.fromEntries(
-  EXPENSE_CATEGORIES.map((item) => [
-    item.label.split(' ')[1].toLowerCase(),
-    item.label.split(' ')[0],
-  ])
-)
-const incomeCategoryMap = Object.fromEntries(
-  INCOME_CATEGORIES.map((item) => [
-    item.label.split(' ')[1].toLowerCase(),
-    item.label.split(' ')[0],
-  ])
-)
 
 function getCategoryEmoji(
   category: string,
@@ -59,20 +49,19 @@ export function formatStats(
   expenses: Transaction[],
   income: Transaction[]
 ): string {
+  console.time('formatStatsIN')
   const expensesByCategory = calculateByCategory(expenses)
   const incomeByCategory = calculateByCategory(income)
-
   const expensesOutput = formatCategoryOutput(
     expensesByCategory,
     '➖ Expenses',
-    expenseCategoryMap
+    EXPENSE_CATEGORIES_EMOJI
   )
   const incomeOutput = formatCategoryOutput(
     incomeByCategory,
     '➕ Income',
-    incomeCategoryMap
+    INCOME_CATEGORIES_EMOJI
   )
-
   const totalExpenses = Object.values(expensesByCategory).reduce(
     (sum, amount) => sum + amount,
     0
@@ -81,11 +70,10 @@ export function formatStats(
     (sum, amount) => sum + amount,
     0
   )
-
   const totalOutput = `Total expenses: *$${totalExpenses}*\nTotal income: *$${totalIncome}*\n\nTotal: *${
     totalIncome - totalExpenses >= 0 ? '$' : '-$'
   }${Math.abs(totalIncome - totalExpenses).toFixed(2)}*`
-
+  console.timeEnd('formatStatsIN')
   return (
     escapeMarkdown(expensesOutput) +
     '\n\n' +
