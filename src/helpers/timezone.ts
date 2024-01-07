@@ -7,3 +7,11 @@ export const getLocalMTDInUTC = (offset: number): Moment => {
   const firstDayOfMonthUTC = firstDayOfMonth.clone().utc()
   return firstDayOfMonthUTC
 }
+
+export const getLocalYTDInUTC = (offset: number): Moment => {
+  const currentUTC = moment.utc()
+  const localDate = currentUTC.clone().utcOffset(offset * 60)
+  const firstDayOfYear = localDate.clone().startOf('year')
+  const firstDayOfYearUTC = firstDayOfYear.clone().utc()
+  return firstDayOfYearUTC
+}
