@@ -13,7 +13,7 @@ import {
   getStartOfThisMonthInUTC,
   getStartOfThisYearInUTC,
 } from '../helpers/timezone'
-import { getExpenses, getIncome } from '../persistence/stats'
+import { getExpenses, getIncome } from '../persistence/fetch'
 import { formatStats } from '../helpers/format-stats'
 import moment from 'moment'
 import type { Transaction } from '../entities/transaction'

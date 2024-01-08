@@ -8,7 +8,7 @@ import {
   MISSING_PROPERTIES_ERROR_MESSAGE,
 } from '../constants/messages'
 import { EXPENSE_CATEGORIES } from '../constants/categories'
-import insertExpense from '../persistence/expense'
+import { insertExpense } from '../persistence/insert'
 
 export const categorizeExpenseScene = new Scenes.BaseScene<BotContext>(
   'CATEGORIZE_EXPENSE'
