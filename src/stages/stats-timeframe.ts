@@ -8,6 +8,8 @@ import {
   TIMEFRAME_SELECT_REMINDER,
 } from '../constants/messages'
 import {
+  getStartOfLastMonthInUTC,
+  getStartOfLastYearInUTC,
   getStartOfThisMonthInUTC,
   getStartOfThisYearInUTC,
 } from '../helpers/timezone'
@@ -36,7 +38,7 @@ statsTimeframeScene.action('timeframe_mtd', async (ctx) => {
 })
 
 statsTimeframeScene.action('timeframe_last_month', async (ctx) => {
-  await ctx.editMessageText('last_month')
+  await generateStats(ctx, 'LAST_MONTH')
   await ctx.scene.leave()
 })
 
@@ -45,7 +47,7 @@ statsTimeframeScene.action('timeframe_ytd', async (ctx) => {
 })
 
 statsTimeframeScene.action('timeframe_last_year', async (ctx) => {
-  await ctx.editMessageText('last_year')
+  await generateStats(ctx, 'LAST_YEAR')
   await ctx.scene.leave()
 })
 
@@ -82,10 +84,12 @@ async function generateStats(
       toDate = moment.utc()
       break
     case 'LAST_MONTH':
-      // TODO: implement
+      fromDate = getStartOfLastMonthInUTC(tzOffset)
+      toDate = getStartOfThisMonthInUTC(tzOffset).subtract(1, 'millisecond')
       break
     case 'LAST_YEAR':
-      // TODO: implement
+      fromDate = getStartOfLastYearInUTC(tzOffset)
+      toDate = getStartOfThisYearInUTC(tzOffset).subtract(1, 'millisecond')
       break
     default:
       throw new Error(`Unsupported timeframe: ${timeframe as string}`)
