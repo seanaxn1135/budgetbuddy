@@ -1,3 +1,4 @@
+import moment from 'moment'
 import type { Transaction } from '../../entities/transaction'
 import { formatStats } from '../format-stats'
 
@@ -28,13 +29,13 @@ Total: *$0\\.00*`
         amount: 200,
         description: 'hello',
         category: 'food',
-        date: new Date('2024-01-06T16:21:07'),
+        date: moment('2024-01-06T16:21:07'),
       },
       {
         amount: 100,
         description: 't-shirt',
         category: 'clothing',
-        date: new Date('2024-01-06T16:32:45'),
+        date: moment('2024-01-06T16:32:45'),
       },
     ]
     const income: Transaction[] = []
@@ -58,13 +59,13 @@ Total: *\\-$300\\.00*`
         amount: 200,
         description: 'hello',
         category: 'food',
-        date: new Date('2024-01-06T16:21:07'),
+        date: moment('2024-01-06T16:21:07'),
       },
       {
         amount: 100,
         description: 't-shirt',
         category: 'clothing',
-        date: new Date('2024-01-06T16:32:45'),
+        date: moment('2024-01-06T16:32:45'),
       },
     ]
     const income: Transaction[] = [
@@ -72,7 +73,7 @@ Total: *\\-$300\\.00*`
         amount: 5000,
         description: 'work',
         category: 'salary',
-        date: new Date('2024-01-06T16:33:45'),
+        date: moment('2024-01-06T16:33:45'),
       },
     ]
     const expectedFormat = `*➖ Expenses*
@@ -95,61 +96,61 @@ Total: *$4700\\.00*`
         amount: 200,
         description: '',
         category: 'food',
-        date: new Date('2024-01-06T16:21:07'),
+        date: moment('2024-01-06T16:21:07'),
       },
       {
         amount: 300,
         description: '',
         category: 'transportation',
-        date: new Date('2024-01-06T16:32:45'),
+        date: moment('2024-01-06T16:32:45'),
       },
       {
         amount: 200,
         description: '',
         category: 'healthcare',
-        date: new Date('2024-01-06T16:32:45'),
+        date: moment('2024-01-06T16:32:45'),
       },
       {
         amount: 200,
         description: 'cake',
         category: 'clothing',
-        date: new Date('2024-01-06T16:32:45'),
+        date: moment('2024-01-06T16:32:45'),
       },
       {
         amount: 41,
         description: 'beer',
         category: 'food',
-        date: new Date('2024-01-06T16:32:45'),
+        date: moment('2024-01-06T16:32:45'),
       },
       {
         amount: 41,
         description: 'beer',
         category: 'food',
-        date: new Date('2024-01-06T16:32:45'),
+        date: moment('2024-01-06T16:32:45'),
       },
       {
         amount: 4.94,
         description: 'lunch',
         category: 'food',
-        date: new Date('2024-01-06T16:32:45'),
+        date: moment('2024-01-06T16:32:45'),
       },
       {
         amount: 200,
         description: 'today',
         category: 'entertainment',
-        date: new Date('2024-01-06T16:32:45'),
+        date: moment('2024-01-06T16:32:45'),
       },
       {
         amount: 200,
         description: 'hello',
         category: 'food',
-        date: new Date('2024-01-06T16:32:45'),
+        date: moment('2024-01-06T16:32:45'),
       },
       {
         amount: 100,
         description: 'food',
         category: 'food',
-        date: new Date('2024-01-06T16:32:45'),
+        date: moment('2024-01-06T16:32:45'),
       },
     ]
     const income: Transaction[] = [
@@ -157,13 +158,13 @@ Total: *$4700\\.00*`
         amount: 200,
         description: 'work',
         category: 'salary',
-        date: new Date('2024-01-06T16:33:45'),
+        date: moment('2024-01-06T16:33:45'),
       },
       {
         amount: 1000,
         description: '',
         category: 'salary',
-        date: new Date('2024-01-06T16:33:45'),
+        date: moment('2024-01-06T16:33:45'),
       },
     ]
     const expectedFormat = `*➖ Expenses*

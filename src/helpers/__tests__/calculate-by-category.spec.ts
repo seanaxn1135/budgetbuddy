@@ -1,3 +1,4 @@
+import moment from 'moment'
 import type { Transaction } from './../../entities/transaction'
 import { calculateByCategory } from './../calculate-by-category'
 
@@ -13,9 +14,14 @@ describe('calculateByCategory', () => {
         amount: 100,
         description: 'Groceries',
         category: 'food',
-        date: new Date(),
+        date: moment.utc(),
       },
-      { amount: 50, description: 'Lunch', category: 'food', date: new Date() },
+      {
+        amount: 50,
+        description: 'Lunch',
+        category: 'food',
+        date: moment.utc(),
+      },
     ]
     expect(calculateByCategory(transactions)).toEqual({ food: 150 })
   })
@@ -26,19 +32,19 @@ describe('calculateByCategory', () => {
         amount: 100,
         description: 'Groceries',
         category: 'food',
-        date: new Date(),
+        date: moment.utc(),
       },
       {
         amount: 40,
         description: 'Train Ticket',
         category: 'transport',
-        date: new Date(),
+        date: moment.utc(),
       },
       {
         amount: 200,
         description: 'Buffet',
         category: 'food',
-        date: new Date(),
+        date: moment.utc(),
       },
     ]
     expect(calculateByCategory(transactions)).toEqual({

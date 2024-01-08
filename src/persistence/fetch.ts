@@ -14,9 +14,9 @@ export const getExpenses: any = async (
     .gte('date', fromDate.toISOString())
     .lte('date', toDate.toISOString())
   if (toOrder === 'asc') {
-    query = query.order(toOrder, { ascending: true })
+    query = query.order('date', { ascending: true })
   } else if (toOrder === 'desc') {
-    query = query.order(toOrder, { ascending: false })
+    query = query.order('date', { ascending: false })
   }
 
   const { data, error } = await query
@@ -41,9 +41,9 @@ export const getIncome: any = async (
     .gte('date', fromDate.toISOString())
     .lte('date', toDate.toISOString())
   if (toOrder === 'asc') {
-    query = query.order(toOrder, { ascending: true })
+    query = query.order('date', { ascending: true })
   } else if (toOrder === 'desc') {
-    query = query.order(toOrder, { ascending: false })
+    query = query.order('date', { ascending: false })
   }
   const { data, error } = await query
 

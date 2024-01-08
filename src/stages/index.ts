@@ -1,7 +1,8 @@
 import { categorizeExpenseScene } from './categorize-expense'
 import { categorizeIncomeScene } from './categorize-income'
-import { statsTimeframeScene } from './stats-timeframe'
+import { statsTimeframeScene } from './stats'
 import { setTimezoneScene, selectTimezoneActionScene } from './set-timezone'
+import { listTimeframeScene } from './list'
 
 export const scenes = [
   categorizeExpenseScene,
@@ -9,4 +10,5 @@ export const scenes = [
   statsTimeframeScene,
   setTimezoneScene,
   selectTimezoneActionScene,
+  listTimeframeScene,
 ]

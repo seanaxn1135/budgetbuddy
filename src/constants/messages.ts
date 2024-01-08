@@ -11,7 +11,6 @@ export const CATEGORY_INCOME_CONFIRMATION = (category: string): string =>
   `Category ${category} selected. Income saved.`
 
 // STATS
-export const STATS_TIMEFRAME_PROMPT = 'Please select a timeframe:'
 export const TIMEFRAME_SELECT_REMINDER = 'Please choose a timeframe'
 
 //  TIMEZONE
@@ -27,6 +26,7 @@ export const SET_TIMEZONE_INVALID_INPUT =
 
 // GENERAL
 export const CANCEL_ACTION_MESSAGE = 'Operation cancelled.'
+export const TIMEFRAME_PROMPT = 'Please select a timeframe:'
 
 //  ERROR
 export const GENERAL_ERROR_MESSAGE = 'An error occurred. Please try again.'
