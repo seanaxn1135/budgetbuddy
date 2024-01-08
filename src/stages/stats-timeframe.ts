@@ -18,6 +18,7 @@ import { formatStats } from '../helpers/format-text'
 import moment from 'moment'
 import type { Transaction } from '../entities/transaction'
 import { getTzOffset } from '../persistence/user-config'
+import formatDate from '../helpers/format-date'
 
 export const statsTimeframeScene = new Scenes.BaseScene<BotContext>(
   'STATS_TIMEFRAME'
@@ -98,8 +99,15 @@ async function generateStats(
     getIncome(ctx.from.id, fromDate, toDate) as Transaction[],
     getExpenses(ctx.from.id, fromDate, toDate) as Transaction[],
   ])
-  await ctx.editMessageText(formatStats(expenses, income), {
-    parse_mode: 'MarkdownV2',
-  })
+  await ctx.editMessageText(
+    `Stats for *${formatDate(fromDate, tzOffset)} — ${formatDate(
+      toDate,
+      tzOffset
+    )}:*`,
+    {
+      parse_mode: 'MarkdownV2',
+    }
+  )
+  await ctx.replyWithMarkdownV2(formatStats(expenses, income))
   await ctx.scene.leave()
 }
