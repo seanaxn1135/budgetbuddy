@@ -49,7 +49,6 @@ export function formatStats(
   expenses: Transaction[],
   income: Transaction[]
 ): string {
-  console.time('formatStatsIN')
   const expensesByCategory = calculateByCategory(expenses)
   const incomeByCategory = calculateByCategory(income)
   const expensesOutput = formatCategoryOutput(
@@ -73,7 +72,6 @@ export function formatStats(
   const totalOutput = `Total expenses: *$${totalExpenses}*\nTotal income: *$${totalIncome}*\n\nTotal: *${
     totalIncome - totalExpenses >= 0 ? '$' : '-$'
   }${Math.abs(totalIncome - totalExpenses).toFixed(2)}*`
-  console.timeEnd('formatStatsIN')
   return (
     escapeMarkdown(expensesOutput) +
     '\n\n' +
