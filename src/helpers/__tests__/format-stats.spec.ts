@@ -1,5 +1,5 @@
 import type { Transaction } from '../../entities/transaction'
-import { formatStats } from '../format-text'
+import { formatStats } from '../format-stats'
 
 test('dummy test', () => {
   expect(true).toBe(true)

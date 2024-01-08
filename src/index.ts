@@ -7,6 +7,8 @@ import { scenes } from './stages'
 import textHandler from './commands/text-handler'
 import stats from './commands/stats'
 import timezone from './commands/timezone'
+import list from './commands/list'
+import { COMMANDS } from './constants/commands'
 
 dotenv.config()
 
@@ -20,7 +22,11 @@ async function startBot(): Promise<void> {
   bot.use(session())
   const stage = new Scenes.Stage<BotContext>(scenes)
   bot.use(stage.middleware())
+
+  await bot.telegram.setMyCommands(COMMANDS)
+
   bot.start(start)
+  bot.command('list', list)
   bot.command('stats', stats)
   bot.command('timezone', timezone)
   bot.on(message('text'), textHandler)

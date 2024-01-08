@@ -14,7 +14,7 @@ import {
   getStartOfThisYearInUTC,
 } from '../helpers/timezone'
 import { getExpenses, getIncome } from '../persistence/stats'
-import { formatStats } from '../helpers/format-text'
+import { formatStats } from '../helpers/format-stats'
 import moment from 'moment'
 import type { Transaction } from '../entities/transaction'
 import { getTzOffset } from '../persistence/user-config'
