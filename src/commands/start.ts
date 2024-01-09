@@ -4,6 +4,7 @@ import {
   START_MESSAGE,
 } from '../constants/messages'
 import type { BotContext } from '../global'
+import { escapeMarkdown } from '../helpers/format-list'
 import { getTzOffset, upsertUserConfig } from '../persistence/user-config'
 
 const start = async (ctx: BotContext): Promise<void> => {
@@ -16,7 +17,7 @@ const start = async (ctx: BotContext): Promise<void> => {
   if (tzOffset === null) {
     await upsertUserConfig(ctx.from.id)
   }
-  await ctx.reply(START_MESSAGE)
+  await ctx.replyWithMarkdownV2(escapeMarkdown(START_MESSAGE))
 }
 
 export default start

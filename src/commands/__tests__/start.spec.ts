@@ -2,6 +2,8 @@ import { createCtxWithMessage } from './../../test-helper/create-ctx'
 import type { BotContext } from '../../global'
 import start from '../start'
 import { getTzOffset, upsertUserConfig } from '../../persistence/user-config'
+import { escapeMarkdown } from '../../helpers/format-list'
+import { START_MESSAGE } from '../../constants/messages'
 
 jest.mock('../../persistence/user-config')
 const mockedGetTzOffset = jest.mocked(getTzOffset)
@@ -16,8 +18,8 @@ describe('start command', () => {
     ctx = createCtxWithMessage('/start')
     mockedGetTzOffset.mockResolvedValue(1)
     await start(ctx)
-    expect(ctx.reply).toHaveBeenCalledWith(
-      'Hello! Welcome to the Budget Bot. How can I assist you today?'
+    expect(ctx.replyWithMarkdownV2).toHaveBeenCalledWith(
+      escapeMarkdown(START_MESSAGE)
     )
   })
 
@@ -30,8 +32,8 @@ describe('start command', () => {
       await start(ctx)
 
       expect(mockedUpsertUserConfig).toHaveBeenCalledWith(userId)
-      expect(ctx.reply).toHaveBeenCalledWith(
-        'Hello! Welcome to the Budget Bot. How can I assist you today?'
+      expect(ctx.replyWithMarkdownV2).toHaveBeenCalledWith(
+        escapeMarkdown(START_MESSAGE)
       )
     } else {
       throw new Error('ctx.from is undefined')

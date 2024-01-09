@@ -37,11 +37,50 @@ export const FETCH_DATA_ERROR = 'Error fetching data:'
 export const DELETE_DATA_ERROR = 'Error deleting data:'
 
 //  START
-export const START_MESSAGE =
-  'Hello! Welcome to the Budget Bot. How can I assist you today?'
+export const START_MESSAGE = `
+👋 Welcome to Budget Buddy, your personal finance assistant on Telegram!
+
+💡 What I can do for you:
+- Help you track your daily expenses and income.
+- Provide a simple way to categorize and view your transactions.
+- Offer insights into your spending habits with easy-to-understand statistics.
+
+🚀 Getting Started:
+1. Set your timezone by typing \`/timezone\` and following the instructions.
+2. Simply type the amount and optionally add a description to log an expense. For example: \`30 lunch at cafe\`.
+3. To log income, add a plus sign (+) before the amount. For example: \`+500 freelance work\`.
+4. Use commands like \`/stats\`, \`/list\`, \`/delete\`, and \`/timezone\` to manage your finances.
+
+🤔 Need help? Type \`/help\` to see all the commands and how to use them.
+
+Let's start managing your finances smartly and efficiently! 🌟
+`
 
 //  HELP
-export const HELP_MESSAGE = `This bot can help you track your expenses and income. Here are the available commands:`
+export const HELP_MESSAGE = `
+🌟 Welcome to Budget Buddy! Manage your finances easily with these commands:
+
+- 📝 **Record an Expense:**
+  Simply type the amount followed by an optional comment.
+  Example: \`50 dinner with family\`
+
+- 💰 **Record an Income:**
+  Add a plus sign (+) before the amount.
+  Example: \`+1500 salary\`
+
+- 📊 **/stats:** Get an overview of your expenses and income.
+
+- ❌ **/delete:** Remove your most recent transaction.
+
+- 📋 **/list:** Display all your recorded transactions.
+
+- ⏰ **/timezone:** Set your timezone for accurate date and time tracking.
+  Example: \`/timezone +2\` for UTC+2.
+
+- ℹ️ **/help:** Display this message again.
+
+Start by typing the amount for an expense or income, and Budget Buddy will take care of the rest. Happy budgeting!
+`
 
 //  DELETE
 export const DELETE_MESSAGE = (latestRecord: string): string =>

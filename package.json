@@ -7,6 +7,7 @@
     "build": "tsc",
     "watch": "nodemon --exec npx ts-node ./src/index.ts",
     "start": "node dist/index.js",
+    "build:start": "npm run build && npm run start",
     "test": "jest --verbose --colors",
     "format": "prettier --write .",
     "lint": "eslint . --ext .ts"

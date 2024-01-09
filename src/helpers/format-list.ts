@@ -7,7 +7,7 @@ type CombinedListItem = Transaction & {
   localDate: Moment
 }
 
-function escapeMarkdown(text: string): string {
+export function escapeMarkdown(text: string): string {
   return text.replace(/([_[\]()#+\-.!])/g, '\\$1')
 }
 
