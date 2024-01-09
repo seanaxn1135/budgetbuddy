@@ -10,6 +10,7 @@ import timezone from './commands/timezone'
 import list from './commands/list'
 import { COMMANDS } from './constants/commands'
 import help from './commands/help'
+import deleteLastEntry from './commands/delete'
 
 dotenv.config()
 
@@ -30,6 +31,7 @@ async function startBot(): Promise<void> {
   bot.command('help', help)
   bot.command('list', list)
   bot.command('stats', stats)
+  bot.command('delete', deleteLastEntry)
   bot.command('timezone', timezone)
   bot.on(message('text'), textHandler)
   await bot.launch()

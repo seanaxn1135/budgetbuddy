@@ -8,6 +8,10 @@ export const COMMANDS = [
     description: 'Statistics',
   },
   {
+    command: 'delete',
+    description: 'Delete last entry',
+  },
+  {
     command: 'timezone',
     description: 'Set your timezone',
   },

@@ -2,7 +2,7 @@ export const INCOME_MESSAGE = 'This is income'
 export const EXPENSE_MESSAGE = 'This is expense'
 export const INVALID_FORMAT_MESSAGE = 'I do not understand'
 
-// CATEGORY
+//  CATEGORY
 export const CATEGORY_SELECT_PROMPT = 'Please select a category:'
 export const CATEGORY_SELECT_REMINDER = 'Please choose a category'
 export const CATEGORY_EXPENSE_CONFIRMATION = (category: string): string =>
@@ -10,7 +10,7 @@ export const CATEGORY_EXPENSE_CONFIRMATION = (category: string): string =>
 export const CATEGORY_INCOME_CONFIRMATION = (category: string): string =>
   `Category ${category} selected. Income saved.`
 
-// STATS
+//  STATS
 export const TIMEFRAME_SELECT_REMINDER = 'Please choose a timeframe'
 
 //  TIMEZONE
@@ -34,6 +34,7 @@ export const MISSING_PROPERTIES_ERROR_MESSAGE =
   'Error: Required properties are undefined.'
 export const INSERT_DATA_ERROR = 'Error inserting data:'
 export const FETCH_DATA_ERROR = 'Error fetching data:'
+export const DELETE_DATA_ERROR = 'Error deleting data:'
 
 //  START
 export const START_MESSAGE =
@@ -41,3 +42,8 @@ export const START_MESSAGE =
 
 //  HELP
 export const HELP_MESSAGE = `This bot can help you track your expenses and income. Here are the available commands:`
+
+//  DELETE
+export const DELETE_MESSAGE = (latestRecord: string): string =>
+  `Your latest record *${latestRecord}* has been deleted.`
+export const NO_RECORD_TO_DELETE = 'No record to delete.'
