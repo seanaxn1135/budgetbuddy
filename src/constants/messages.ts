@@ -38,3 +38,6 @@ export const FETCH_DATA_ERROR = 'Error fetching data:'
 //  START
 export const START_MESSAGE =
   'Hello! Welcome to the Budget Bot. How can I assist you today?'
+
+//  HELP
+export const HELP_MESSAGE = `This bot can help you track your expenses and income. Here are the available commands:`

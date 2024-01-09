@@ -34,7 +34,6 @@ describe('start command', () => {
         'Hello! Welcome to the Budget Bot. How can I assist you today?'
       )
     } else {
-      // Fail the test if ctx.from is not defined
       throw new Error('ctx.from is undefined')
     }
   })

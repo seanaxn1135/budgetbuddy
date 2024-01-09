@@ -9,6 +9,7 @@ import stats from './commands/stats'
 import timezone from './commands/timezone'
 import list from './commands/list'
 import { COMMANDS } from './constants/commands'
+import help from './commands/help'
 
 dotenv.config()
 
@@ -26,6 +27,7 @@ async function startBot(): Promise<void> {
   await bot.telegram.setMyCommands(COMMANDS)
 
   bot.start(start)
+  bot.command('help', help)
   bot.command('list', list)
   bot.command('stats', stats)
   bot.command('timezone', timezone)

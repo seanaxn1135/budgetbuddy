@@ -11,4 +11,8 @@ export const COMMANDS = [
     command: 'timezone',
     description: 'Set your timezone',
   },
+  {
+    command: 'help',
+    description: 'Help',
+  },
 ]
