@@ -1,3 +1,4 @@
+import { INVALID_FORMAT_MESSAGE } from '../../constants/messages'
 import type { BotContext } from '../../global'
 import { createCtxWithMessage } from '../../test-helper/create-ctx'
 import textHandler from '../text-handler'
@@ -30,6 +31,6 @@ describe('Text Handler', () => {
   it('should handle invalid format', async () => {
     ctx = createCtxWithMessage('Invalid Text')
     await textHandler(ctx)
-    expect(ctx.reply).toHaveBeenCalledWith('I do not understand')
+    expect(ctx.reply).toHaveBeenCalledWith(INVALID_FORMAT_MESSAGE)
   })
 })

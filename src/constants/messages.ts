@@ -1,6 +1,5 @@
-export const INCOME_MESSAGE = 'This is income'
-export const EXPENSE_MESSAGE = 'This is expense'
-export const INVALID_FORMAT_MESSAGE = 'I do not understand'
+export const INVALID_FORMAT_MESSAGE =
+  'Oops! I didn’t catch that. Please ensure your message follows the correct format. Type /help for guidance on commands and usage.'
 
 //  CATEGORY
 export const CATEGORY_SELECT_PROMPT = 'Please select a category:'
@@ -25,7 +24,8 @@ export const SET_TIMEZONE_INVALID_INPUT =
   'Invalid input. Please enter a valid UTC offset (e.g., +3, -4, +5.5)'
 
 // GENERAL
-export const CANCEL_ACTION_MESSAGE = 'Operation cancelled.'
+export const TIMEZONE_CANCEL_ACTION_MESSAGE =
+  'Timezone update cancelled. Use /timezone to adjust it anytime.'
 export const TIMEFRAME_PROMPT = 'Please select a timeframe:'
 
 //  ERROR

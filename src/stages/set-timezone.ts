@@ -2,7 +2,7 @@ import { Markup, Scenes } from 'telegraf'
 import type { BotContext } from '../global'
 import { TIMEZONE_ACTIONS } from '../constants/timezone-actions'
 import {
-  CANCEL_ACTION_MESSAGE,
+  TIMEZONE_CANCEL_ACTION_MESSAGE,
   CURRENT_TIMEZONE,
   GENERAL_ERROR_MESSAGE,
   MISSING_PROPERTIES_ERROR_MESSAGE,
@@ -43,7 +43,7 @@ selectTimezoneActionScene.action('set_timezone', async (ctx) => {
 })
 
 selectTimezoneActionScene.action('cancel', async (ctx) => {
-  await ctx.editMessageText(CANCEL_ACTION_MESSAGE)
+  await ctx.editMessageText(TIMEZONE_CANCEL_ACTION_MESSAGE)
   await ctx.scene.leave()
 })
 
