@@ -14,14 +14,27 @@ import deleteLastEntry from './commands/delete'
 
 dotenv.config()
 
-if (process.env.BOT_TOKEN === undefined || process.env.BOT_TOKEN === '') {
+if (process.env.BOT_TOKEN == null || process.env.BOT_TOKEN === undefined) {
   throw new Error('BOT_TOKEN not found in environment variables.')
 }
 
+if (
+  process.env.WEBHOOK_DOMAIN === null ||
+  process.env.WEBHOOK_DOMAIN === undefined
+) {
+  throw new Error('WEBHOOK_DOMAIN not found in environment variables.')
+}
+
 const bot = new Telegraf<BotContext>(process.env.BOT_TOKEN)
-const DOMAIN = 'budgetbuddydev-development.up.railway.app'
 
 async function startBot(): Promise<void> {
+  if (
+    process.env.WEBHOOK_DOMAIN === null ||
+    process.env.WEBHOOK_DOMAIN === undefined
+  ) {
+    throw new Error('WEBHOOK_DOMAIN not found in environment variables.')
+  }
+
   bot.use(session())
   const stage = new Scenes.Stage<BotContext>(scenes)
   bot.use(stage.middleware())
@@ -38,12 +51,13 @@ async function startBot(): Promise<void> {
 
   const webhookOptions = {
     webhook: {
-      domain: DOMAIN,
+      domain: process.env.WEBHOOK_DOMAIN,
       port: 3000,
     },
   }
-  const response = await bot.telegram.setWebhook(DOMAIN)
-  console.log(response)
+
+  const response = await bot.telegram.setWebhook(process.env.WEBHOOK_DOMAIN)
+  console.log('webhook is set: ' + response)
   await bot.launch(webhookOptions)
 }
 
