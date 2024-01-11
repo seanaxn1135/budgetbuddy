@@ -17,6 +17,9 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run test
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_API_KEY: ${{ secrets.SUPABASE_API_KEY }}
       - run: npm audit --omit=dev
       - run: npm i -g @railway/cli
       - run: railway up
