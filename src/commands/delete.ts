@@ -5,6 +5,7 @@ import {
   NO_RECORD_TO_DELETE,
 } from '../constants/messages'
 import type { BotContext } from '../global'
+import { escapeMarkdown } from '../helpers/format-list'
 import { delete_last_transaction } from '../persistence/delete'
 
 const deleteLastEntry = async (ctx: BotContext): Promise<void> => {
@@ -23,7 +24,9 @@ const deleteLastEntry = async (ctx: BotContext): Promise<void> => {
     }
 
     const latestRecordString = `$${latestRecord.amount} ${latestRecord.description}`
-    await ctx.replyWithMarkdownV2(DELETE_MESSAGE(latestRecordString))
+    await ctx.replyWithMarkdownV2(
+      escapeMarkdown(DELETE_MESSAGE(latestRecordString))
+    )
   } catch (error) {
     console.error('Error in deleteLastEntry:', error)
     await ctx.reply(GENERAL_ERROR_MESSAGE)

@@ -29,7 +29,7 @@ describe('deleteLastEntry', () => {
 
     expect(delete_last_transaction).toHaveBeenCalledWith(12345)
 
-    const expectedMessage = `Your latest record *$${mockLatestRecord.amount} ${mockLatestRecord.description}* has been deleted.`
+    const expectedMessage = `Your latest record *$${mockLatestRecord.amount} ${mockLatestRecord.description}* has been deleted\\.`
     expect(mockCtx.replyWithMarkdownV2).toHaveBeenCalledWith(expectedMessage)
   })
 
