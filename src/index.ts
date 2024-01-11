@@ -18,13 +18,6 @@ if (process.env.BOT_TOKEN == null || process.env.BOT_TOKEN === undefined) {
   throw new Error('BOT_TOKEN not found in environment variables.')
 }
 
-if (
-  process.env.WEBHOOK_DOMAIN === null ||
-  process.env.WEBHOOK_DOMAIN === undefined
-) {
-  throw new Error('WEBHOOK_DOMAIN not found in environment variables.')
-}
-
 const bot = new Telegraf<BotContext>(process.env.BOT_TOKEN)
 
 async function startBot(): Promise<void> {
@@ -49,29 +42,7 @@ async function startBot(): Promise<void> {
   bot.command('timezone', timezone)
   bot.on(message('text'), textHandler)
 
-  try {
-    const webhookInfo = await bot.telegram.getWebhookInfo()
-    if (webhookInfo.url === process.env.WEBHOOK_DOMAIN) {
-      console.log(
-        'Webhook is already set to the specified domain:',
-        webhookInfo.url
-      )
-    } else {
-      const response = await bot.telegram.setWebhook(process.env.WEBHOOK_DOMAIN)
-      console.log('Webhook is set: ' + response)
-    }
-  } catch (error) {
-    console.error('Error while checking webhook:', error)
-  }
-
-  const webhookOptions = {
-    webhook: {
-      domain: process.env.WEBHOOK_DOMAIN,
-      port: 3000,
-    },
-  }
-
-  await bot.launch(webhookOptions)
+  await bot.launch()
 }
 
 void startBot()
