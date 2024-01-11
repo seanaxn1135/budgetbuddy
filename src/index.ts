@@ -42,7 +42,8 @@ async function startBot(): Promise<void> {
       port: 3000,
     },
   }
-  await bot.telegram.setWebhook(DOMAIN)
+  const response = await bot.telegram.setWebhook(DOMAIN)
+  console.log(response)
   await bot.launch(webhookOptions)
 }
 
