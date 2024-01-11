@@ -21,12 +21,12 @@ if (process.env.BOT_TOKEN == null || process.env.BOT_TOKEN === undefined) {
 const bot = new Telegraf<BotContext>(process.env.BOT_TOKEN)
 
 async function startBot(): Promise<void> {
-  if (
-    process.env.WEBHOOK_DOMAIN === null ||
-    process.env.WEBHOOK_DOMAIN === undefined
-  ) {
-    throw new Error('WEBHOOK_DOMAIN not found in environment variables.')
-  }
+  // if (
+  //   process.env.WEBHOOK_DOMAIN === null ||
+  //   process.env.WEBHOOK_DOMAIN === undefined
+  // ) {
+  //   throw new Error('WEBHOOK_DOMAIN not found in environment variables.')
+  // }
 
   bot.use(session())
   const stage = new Scenes.Stage<BotContext>(scenes)
