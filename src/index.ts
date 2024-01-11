@@ -19,6 +19,7 @@ if (process.env.BOT_TOKEN === undefined || process.env.BOT_TOKEN === '') {
 }
 
 const bot = new Telegraf<BotContext>(process.env.BOT_TOKEN)
+const DOMAIN = 'budgetbuddydev-development.up.railway.app'
 
 async function startBot(): Promise<void> {
   bot.use(session())
@@ -34,7 +35,15 @@ async function startBot(): Promise<void> {
   bot.command('delete', deleteLastEntry)
   bot.command('timezone', timezone)
   bot.on(message('text'), textHandler)
-  await bot.launch()
+
+  const webhookOptions = {
+    webhook: {
+      domain: DOMAIN,
+      port: 3000,
+    },
+  }
+  await bot.telegram.setWebhook(DOMAIN)
+  await bot.launch(webhookOptions)
 }
 
 void startBot()
