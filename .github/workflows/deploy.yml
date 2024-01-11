@@ -20,6 +20,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_API_KEY: ${{ secrets.SUPABASE_API_KEY }}
+          WEBHOOK_DOMAIN: ${{ secrets.WEBHOOK_DOMAIN }}
       - run: npm audit
       - run: npm i -g @railway/cli
       - run: railway up --service budgetbuddydev
