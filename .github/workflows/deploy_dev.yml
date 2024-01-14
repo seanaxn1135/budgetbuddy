@@ -23,6 +23,6 @@ jobs:
           WEBHOOK_DOMAIN: ${{ secrets.WEBHOOK_DOMAIN }}
       - run: npm audit
       - run: npm i -g @railway/cli
-      - run: railway up --service budgetbuddydev
+      - run: railway up --service budgetbuddy_dev
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
