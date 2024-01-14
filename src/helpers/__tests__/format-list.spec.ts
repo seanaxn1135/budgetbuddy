@@ -1,7 +1,17 @@
 import moment from 'moment'
 import { combineAndFormatLists } from '../format-list'
+import type { Transaction } from '../../entities/transaction'
 
 describe('combineAndFormatLists', () => {
+  it('should correctly combine and format lists with dates with completely empty transactions', () => {
+    const expenses: Transaction[] = []
+    const income: Transaction[] = []
+    const tzOffset = 0
+    const result = combineAndFormatLists(expenses, income, tzOffset)
+    const expectedOutput = '*No transactions*'
+
+    expect(result).toBe(expectedOutput)
+  })
   it('should correctly combine and format lists with different dates', () => {
     const expenses = [
       {

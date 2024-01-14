@@ -37,6 +37,9 @@ function combineAndSortLists(
 }
 
 function formatDateOutput(combinedList: CombinedListItem[]): string {
+  if (combinedList.length === 0) {
+    return '*No transactions*'
+  }
   const formattedOutputLines: string[] = []
   let currentDate: Moment | null = null
 
