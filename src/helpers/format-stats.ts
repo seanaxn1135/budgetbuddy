@@ -69,7 +69,9 @@ export function formatStats(
     (sum, amount) => sum + amount,
     0
   )
-  const totalOutput = `Total expenses: *$${totalExpenses}*\nTotal income: *$${totalIncome}*\n\nTotal: *${
+  const totalOutput = `Total expenses: *$${totalExpenses.toFixed(
+    2
+  )}*\nTotal income: *$${totalIncome.toFixed(2)}*\n\nTotal: *${
     totalIncome - totalExpenses >= 0 ? '$' : '-$'
   }${Math.abs(totalIncome - totalExpenses).toFixed(2)}*`
   return (

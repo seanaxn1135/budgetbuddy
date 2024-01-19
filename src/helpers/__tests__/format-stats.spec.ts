@@ -16,8 +16,8 @@ No transactions
 *➕ Income*
 No transactions
 
-Total expenses: *$0*
-Total income: *$0*
+Total expenses: *$0\\.00*
+Total income: *$0\\.00*
 
 Total: *$0\\.00*`
     expect(formatStats(expenses, income)).toEqual(expectedFormat)
@@ -46,8 +46,8 @@ Total: *$0\\.00*`
 *➕ Income*
 No transactions
 
-Total expenses: *$300*
-Total income: *$0*
+Total expenses: *$300\\.00*
+Total income: *$0\\.00*
 
 Total: *\\-$300\\.00*`
     expect(formatStats(expenses, income)).toEqual(expectedFormat)
@@ -83,8 +83,8 @@ Total: *\\-$300\\.00*`
 *➕ Income*
 5000 \\(100%\\) — 💰 Salary
 
-Total expenses: *$300*
-Total income: *$5000*
+Total expenses: *$300\\.00*
+Total income: *$5000\\.00*
 
 Total: *$4700\\.00*`
     expect(formatStats(expenses, income)).toEqual(expectedFormat)
@@ -178,7 +178,7 @@ Total: *$4700\\.00*`
 1200 \\(100%\\) — 💰 Salary
 
 Total expenses: *$1486\\.94*
-Total income: *$1200*
+Total income: *$1200\\.00*
 
 Total: *\\-$286\\.94*`
     expect(formatStats(expenses, income)).toEqual(expectedFormat)
@@ -219,8 +219,8 @@ Total: *\\-$286\\.94*`
 *➕ Income*
 500\\.3 \\(100%\\) — 💰 Salary
 
-Total expenses: *$500\\.3*
-Total income: *$500\\.3*
+Total expenses: *$500\\.30*
+Total income: *$500\\.30*
 
 Total: *$0\\.00*`
     expect(formatStats(expenses, income)).toEqual(expectedFormat)
