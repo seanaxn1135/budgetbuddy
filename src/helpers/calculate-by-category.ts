@@ -12,7 +12,7 @@ export function calculateByCategory(
       acc[category] = 0
     }
 
-    acc[category] += amount
+    acc[category] = parseFloat((acc[category] + amount).toFixed(2))
     return acc
   }, initialValue)
 }

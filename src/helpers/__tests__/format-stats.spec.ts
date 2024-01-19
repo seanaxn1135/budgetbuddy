@@ -183,4 +183,46 @@ Total income: *$1200*
 Total: *\\-$286\\.94*`
     expect(formatStats(expenses, income)).toEqual(expectedFormat)
   })
+
+  it('should not have floating point arithmetic in expenses and income', () => {
+    const expenses: Transaction[] = [
+      {
+        amount: 200.1,
+        description: '',
+        category: 'food',
+        date: moment('2024-01-06T16:21:07'),
+      },
+      {
+        amount: 300.2,
+        description: '',
+        category: 'food',
+        date: moment('2024-01-06T16:32:45'),
+      },
+    ]
+    const income: Transaction[] = [
+      {
+        amount: 200.1,
+        description: 'work',
+        category: 'salary',
+        date: moment('2024-01-06T16:33:45'),
+      },
+      {
+        amount: 300.2,
+        description: '',
+        category: 'salary',
+        date: moment('2024-01-06T16:33:45'),
+      },
+    ]
+    const expectedFormat = `*➖ Expenses*
+500\\.3 \\(100%\\) — 🍔 Food
+
+*➕ Income*
+500\\.3 \\(100%\\) — 💰 Salary
+
+Total expenses: *$500\\.3*
+Total income: *$500\\.3*
+
+Total: *$0\\.00*`
+    expect(formatStats(expenses, income)).toEqual(expectedFormat)
+  })
 })
